@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Uçuş Arama</title>
+  <style>
+    body {
+      background-image: url("https://static.vecteezy.com/system/resources/thumbnails/001/984/892/small/banner-design-geometric-hexagon-colorful-overlapping-with-background-free-vector.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+    }
+    #flightSearchForm {
+      text-align: center;
+      margin-top: 20px;
+    }
+    #flightDetails {
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+      padding: 20px;
+      width: 80%;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    button[type="submit"] {
+      background-color: #3498db;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button[type="submit"]:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+<h1>Uçuş Arama</h1>
+<form id="flightSearchForm">
+  <label for="originAirport">Kalkış Havalimanı:</label>
+  <input type="text" id="originAirport" name="originAirport" required>
+  <button type="submit">Ara</button>
+</form>
+<div id="flightDetails">
+  <!-- Uçak bilgileri burada görüntülenecek -->
+</div>
+
+<script>
+  document.getElementById('flightSearchForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Sayfa yenilenmesini engelle
+
+    const originAirport = document.getElementById('originAirport').value;
+    fetch(`/flightSearch?originAirport=${originAirport}`)
+            .then(response => response.json())
+            .then(data => {
+              const flightDetailsDiv = document.getElementById('flightDetails');
+              flightDetailsDiv.innerHTML = '';
+
+              data.flightDetails.forEach(flight => {
+                const flightInfo = `
+                        <p>Kalkış Yeri: ${flight.originAirport}</p>
+                        <p>Varış Yeri: ${flight.arrivalAirport}</p>
+                        <p>Kalkış Tarihi: ${flight.departureTime}</p>
+                        <p>Varış Tarihi: ${flight.arrivalTime}</p>
+                        <p>Fiyat: ${flight.price}</p>
+                        <hr>
+                    `;
+                flightDetailsDiv.innerHTML += flightInfo;
+              });
+            })
+            .catch(error => {
+              console.error('Hata:', error);
+            });
+  });
+</script>
+</body>
+</html>

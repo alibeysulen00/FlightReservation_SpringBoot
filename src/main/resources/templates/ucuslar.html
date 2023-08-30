@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Uçuş Listesi</title>
+  <style>
+    body {
+      background-image: url("https://static.vecteezy.com/system/resources/thumbnails/001/984/892/small/banner-design-geometric-hexagon-colorful-overlapping-with-background-free-vector.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      text-align: center;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+<h1>Tüm Uçuşlar</h1>
+<table>
+  <tr>
+    <th>Kalkış Yeri</th>
+    <th>Varış Yeri</th>
+    <th>Kalkış Tarihi</th>
+    <th>Varış Tarihi</th>
+    <th>Fiyat</th>
+  </tr>
+  <!-- Tüm uçuşları listeleyecek döngü -->
+  <th:block th:each="flight : ${flightDetailsList}">
+    <tr>
+      <td th:text="${flight.originAirport}"></td>
+      <td th:text="${flight.arrivalAirport}"></td>
+      <td th:text="${flight.departureTime}"></td>
+      <td th:text="${flight.arrivalTime}"></td>
+      <td th:text="${flight.price}"></td>
+    </tr>
+  </th:block>
+</table>
+</body>
+</html>
