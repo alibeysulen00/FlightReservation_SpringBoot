@@ -49,6 +49,6 @@
 ![MainPage](AdminPanel.png)
 
 <hr>
-<h3> My Database (DataGrip IDE)   </h3>
+<h3> My Database (MySQL DB)   </h3>
 
 ![MainPage](DatabaseView.png)
