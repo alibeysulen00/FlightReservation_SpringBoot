@@ -25,10 +25,12 @@
 <hr>
 
 <h3> All Flights </h3>
+
 ![MainPage](AllFlights.png)
 
 <hr>
 <h3> Flight Search  </h3>
+
 ![MainPage](FlightSearchEmpty.png)
 
 <hr>
@@ -48,4 +50,5 @@
 
 <hr>
 <h3> My Database (DataGrip IDE)   </h3>
+
 ![MainPage](DatabaseView.png)
