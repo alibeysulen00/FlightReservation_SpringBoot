@@ -18,29 +18,34 @@
 
 </ul>
 <hr>
+<h3> Main Page </h3>
 
 ![MainPage](MainPage.png)
 
 <hr>
 
+<h3> All Flights </h3>
 ![MainPage](AllFlights.png)
 
 <hr>
-
+<h3> Flight Search  </h3>
 ![MainPage](FlightSearchEmpty.png)
 
 <hr>
+<h3> Flight Search  </h3>
 
 ![MainPage](FlightSearch.png)
 
 <hr>
+<h3> Admin Panel Login Page  </h3>
 
 ![MainPage](AdminPanelLoginPage.png)
 
 <hr>
+<h3> Admin Panel   </h3>
 
 ![MainPage](AdminPanel.png)
 
 <hr>
-
+<h3> My Database (DataGrip IDE)   </h3>
 ![MainPage](DatabaseView.png)
