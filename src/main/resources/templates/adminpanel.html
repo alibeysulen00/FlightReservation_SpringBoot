@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    /* Yeni Uçuş Ekle Formu */
+    .flight-form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+    }
+
+    .flight-form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .flight-form input[type="text"],
+    .flight-form input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .flight-form button[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .flight-form button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    /* Tablo Stilleri */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    th:last-child, td:last-child {
+      text-align: center;
+    }
+
+    a {
+      text-decoration: none;
+      color: maroon;
+      touch-action: inherit;
+    }
+
+
+    #delete-flight-link {
+      position: static;
+
+      right: 20px;
+
+      color: white;
+      padding: 10px 20px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+
+
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Yeni Uçuş Ekle</h2>
+  <form class="flight-form" action="/ekleUcus" method="POST">
+    <!-- CSRF token'ı eklemek için Spring Security'nin formTag kullanımı -->
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+    <label for="originAirport">Kalkış Havalimanı:</label>
+    <input type="text" id="originAirport" name="originAirport" required><br>
+
+    <label for="arrivalAirport">Varış Havalimanı:</label>
+    <input type="text" id="arrivalAirport" name="arrivalAirport" required><br>
+
+    <label for="departureTime">Kalkış Saati:</label>
+    <input type="text" id="departureTime" name="departureTime" required><br>
+
+    <label for="arrivalTime">Varış Saati:</label>
+    <input type="text" id="arrivalTime" name="arrivalTime" ><br>
+
+    <label for="price">Fiyat:</label>
+    <input type="number" id="price" name="price" ><br>
+
+    <button type="submit">Uçuş Ekle</button>
+  </form>
+
+  <hr>
+  <div id="delete-flight-link">
+    <a th:href="@{/tumUcuslariSil}">Tüm Uçuşları Sil</a>
+  </div>
+  <hr>
+
+  <h2>Mevcut Uçuşlar</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Kalkış Havalimanı</th>
+      <th>Varış Havalimanı</th>
+      <th>Kalkış Saati</th>
+      <th>Varış Saati</th>
+      <th>Fiyat</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="flight : ${flightList}">
+      <td th:text="${flight.originAirport}"></td>
+      <td th:text="${flight.arrivalAirport}"></td>
+      <td th:text="${flight.departureTime}"></td>
+      <td th:text="${flight.arrivalTime}"></td>
+      <td th:text="${flight.price}"></td>
+      <td>
+      <td>
+        <a th:href="@{/silUcus/{airport}(airport=${flight.originAirport})}">Sil</a>
+      </td>
+
+
+
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

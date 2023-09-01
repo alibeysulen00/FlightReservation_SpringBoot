@@ -1,23 +1,19 @@
 package com.example.flightsearch.controller;
 
-import com.example.flightsearch.model.flight.FlightsResponse;
-import com.example.flightsearch.model.flight.FlightsRequest;
+import com.example.flightsearch.model.FlightsResponse;
+import com.example.flightsearch.model.FlightsRequest;
 import com.example.flightsearch.services.FlightsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-
-
-
-@Controller
+@RestController
 public class ApiController {
 
     @Autowired
     private FlightsService flightsService;
 
-// Response Body içerisine tüm uçuş bilgileri girilerek uçuş arama gerçekleştirilir. Eğer varış tarihinide girerseniz çift yönlü uçuşlar karşınıza çıkar.
+    // Response Body içerisine tüm uçuş bilgileri girilerek uçuş arama gerçekleştirilir. Eğer varış tarihinide girerseniz çift yönlü uçuşlar karşınıza çıkar.
     // Eğer varış tarihi belirtmezseniz sadece tek yönlü uçuşlar çıkar
     @PostMapping("/flightList")
     public ResponseEntity<FlightsResponse> listele(@RequestBody FlightsRequest request) {
@@ -25,7 +21,8 @@ public class ApiController {
         return ResponseEntity.ok(response);
 
     }
-// Kalkış Havalimanı bilgisine göre uçuşları listeleme
+
+    // Kalkış Havalimanı bilgisine göre uçuşları listeleme
     @GetMapping("/flightSearch")
     public ResponseEntity<FlightsResponse> searchFlight(@RequestParam String originAirport) {
         FlightsResponse response = flightsService.searchFlight(originAirport);
@@ -36,8 +33,8 @@ public class ApiController {
     }
 
 
+}
 
-    }
 
 
 

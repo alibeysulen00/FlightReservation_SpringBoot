@@ -1,9 +1,9 @@
 package com.example.flightsearch.services;
 
 import com.example.flightsearch.entities.Flights;
-import com.example.flightsearch.model.flight.FlightDetails;
-import com.example.flightsearch.model.flight.FlightsRequest;
-import com.example.flightsearch.model.flight.FlightsResponse;
+import com.example.flightsearch.model.FlightDetails;
+import com.example.flightsearch.model.FlightsRequest;
+import com.example.flightsearch.model.FlightsResponse;
 import com.example.flightsearch.repository.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +16,24 @@ public class FlightsService {
 
     @Autowired
     private FlightRepository flightRepository;
+
+    public void addFlight(Flights flight) {
+        flightRepository.save(flight);
+    }
+
+    public Flights getFlightByAirport(String airport) {
+        return flightRepository.findByOriginAirport(airport);
+    }
+
+    public void deleteFlightByAirport(String airport) {
+        flightRepository.deleteByOriginAirport(airport);
+    }
+
+    public void deleteAllFlights(){
+        flightRepository.deleteAll();
+    }
+
+
 
 
     public FlightsResponse getAllFlights() {

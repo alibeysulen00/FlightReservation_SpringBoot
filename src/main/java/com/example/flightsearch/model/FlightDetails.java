@@ -1,4 +1,4 @@
-package com.example.flightsearch.model.flight;
+package com.example.flightsearch.model;
 
 import lombok.Getter;
 import lombok.Setter;
