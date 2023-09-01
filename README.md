@@ -2,8 +2,19 @@
 
 <h2> Usaged Tecnology </h2>
 <ul>
+    <li>Java </li>
+    <li>SpringBoot </li>
+    <li>Spring MVC  </li>
+    <li>Html, Css </li>
+    <li> Maven</li>
+
+</ul>
+<h2> Version </h2>
+
+<ul>
     <li>SpringBoot Version : 2.6.2  </li>
     <li>Java Version : 17  </li>
+    
 
 </ul>
 <h3>Dependencies</h3>
